@@ -7,16 +7,25 @@ from datetime import datetime, timedelta
 import random
 import pyrebase
 
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from the .env file
+load_dotenv()
+
+
 # Set the path to the Tesseract OCR executable (change this according to your installation)
 pytesseract.pytesseract.tesseract_cmd = '/opt/homebrew/bin/tesseract'
 
 # Firebase configuration
 config = {
-    "apiKey": "AIzaSyCEbevoIw6HvbRiOK5kJNbNoZ9Nou7ARow",
+    "apiKey": os.getenv("API_KEY"),
     "authDomain": "parkeasetesting-f25e5.firebaseapp.com",
     "databaseURL": "https://parkeasetesting-f25e5-default-rtdb.firebaseio.com",
     "storageBucket": "parkeasetesting-f25e5.appspot.com"
 }
+
+
 
 firebase = pyrebase.initialize_app(config)
 db = firebase.database()
